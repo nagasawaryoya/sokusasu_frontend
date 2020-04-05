@@ -1,19 +1,17 @@
 <template>
-  <div class="home">
-    <Top msg="home"/>
+  <div class="about">
+    <h1>post</h1>
     <Nav />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Top from '@/components/Top.vue'
 import Nav from '@/components/Nav.vue'
 
 export default {
-  name: 'Home',
+  name: 'Tweet',
   components: {
-    Top,
     Nav
   }
 }
