@@ -17,7 +17,7 @@
       data() {    
         return {    
           user: {    
-            name: "Jesse"    
+            name: "仮置き"    
           }    
         }    
       },    
@@ -37,23 +37,9 @@
               router.push("/")    
           })    
         },
-        // twitterログイン
-        // twitterSignIn: function() {
-        //   axios.get("/api/auth/twitter/callback")    
-        //   .then((response) => {    
-        //       console.log(response)    
-        //       this.$set(this, "user", response.data.user)    
-        //   })    
-        //   .catch((errors) => {    
-        //       console.log(errors)    
-        //       router.push("/")    
-        //   }) 
-        // },
       },
       mounted() {
-      // 通常ログイン
-      this.getUserData()
-      // this.twitterSignIn()
+        this.getUserData()
       }
     }
 </script>

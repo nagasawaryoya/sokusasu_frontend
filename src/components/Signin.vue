@@ -1,9 +1,23 @@
 <template>
   <div class="signin_wrap">
     <h2>ログイン</h2>
-    <input type="text" name='email' placeholder="Username" v-model="username">
+    <!-- <input type="text" name="username" placeholder="Id" v-model="username">
     <input type="password" name='password' placeholder="Password" v-model="password">
-    <button v-on:click="signIn" class="signIn nomal_signIn">ログイン</button>
+    <button v-on:click="signIn" class="signIn nomal_signIn">ログイン</button> -->
+
+    <form action="/api/login" method="post">
+    <div>
+        <label>ユーザーID：</label>
+        <input type="text" name="username" v-model="username"/>
+    </div>
+    <div>
+        <label>パスワード：</label>
+        <input type="password" name="password" v-model="password"/>
+    </div>
+    <div>
+        <input type="submit" value="ログイン"/>
+    </div>
+</form>
     <div class="twitter_auth_wrap">
       <a href="/api/auth/twitter" class="signIn twitter_signIn">twitter</a>
     </div>
@@ -14,14 +28,14 @@
 </template>
 
 <script>
-import axios from "axios";
-import router from "../router"  
+// import axios from "axios";
+// import router from "../router" 
 
 export default {
   name: 'Signin',
   data () {
     return {
-      username: 'user@email.com',
+      username: '1',
       password: 'password',
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',
@@ -29,29 +43,6 @@ export default {
       },
     }
   },
-  methods: {
-    // 通常ログイン
-    signIn() {
-      axios.post("/api/login",{
-        params: {
-          username: this.username,
-          password: this.password
-        }
-      })
-      .then(res=>{
-          console.log(res.data)//string
-          
-          router.push("/dashboard")
-      })
-      .catch(err=>{
-        console.log('Cannot log in');
-        console.log(err)
-      });
-    },
-  },
-  mounted() {
-
-  }
 }
 </script>
 
