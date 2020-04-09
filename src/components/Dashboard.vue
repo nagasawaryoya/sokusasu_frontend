@@ -2,7 +2,7 @@
     <div>    
         <h2>Dashboard</h2>
         <Nav />
-        <p>OName: {{ user.name }}</p>    
+        <p>OName: {{ user.username }}</p>    
     </div>
 </template>
 <script>
