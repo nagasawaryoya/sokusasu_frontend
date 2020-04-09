@@ -21,7 +21,7 @@
     <div class="twitter_auth_wrap">
       <a href="/api/auth/twitter" class="twitter_signIn"></a>
     </div>
-    <p>アカウントを作っていない方は 
+    <p>アカウントをお持ちでない方は 
       <router-link to="/signup">こちら</router-link>
     </p>
   </div>
