@@ -92,7 +92,6 @@ input {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-<<<<<<< Updated upstream
 
   .signIn {
     width: 90px;
@@ -110,18 +109,6 @@ input {
     border-color: #28b7ef;
     background-color: #28b7ef;
     color: #fff;
-=======
-  .twitter_auth_wrap {
-    width: 30px;
-    height: 30px;
-    display: block;
-    background-image: url("../assets/Twitter_Social_Icon_Rounded_Square_Color.svg");
-    cursor: pointer;
-    .twitter_signIn {
-      width: 100%;
-      height: 100%;
-    }
->>>>>>> Stashed changes
   }
 }
 </style>
