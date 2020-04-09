@@ -17,11 +17,11 @@ body {
 #app {
   width: 100%;
   height: 100%;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Hiragino Sans"; 
+  font-weight: 100;
   text-align: center;
-  color: #2c3e50;
+  color: #444444;
+  font-size: 12px;
   .submit {
     width: 90px;
     height: 30px;
