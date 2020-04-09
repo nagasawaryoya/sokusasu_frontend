@@ -1,9 +1,19 @@
 <template>
   <div class="signin_wrap">
     <h2>ログイン</h2>
-    <input type="text" name='email' placeholder="Username" v-model="username">
-    <input type="password" name='password' placeholder="Password" v-model="password">
-    <button v-on:click="signIn" class="signIn nomal_signIn">ログイン</button>
+    <form action="/api/login" method="post">
+      <div>
+          <label>お名前：</label>
+          <input type="text" name="username" v-model="username"/>
+      </div>
+      <div>
+          <label>パスワード：</label>
+          <input type="password" name="password" v-model="password"/>
+      </div>
+      <!-- 通常ログイン -->
+      <input class="submit nomal_signIn" type="submit" value="ログイン"/>
+    </form>
+    <!-- twitterログイン -->
     <div class="twitter_auth_wrap">
       <a href="/api/auth/twitter" class="signIn twitter_signIn">twitter</a>
     </div>
@@ -82,6 +92,7 @@ input {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+<<<<<<< Updated upstream
 
   .signIn {
     width: 90px;
@@ -99,6 +110,18 @@ input {
     border-color: #28b7ef;
     background-color: #28b7ef;
     color: #fff;
+=======
+  .twitter_auth_wrap {
+    width: 30px;
+    height: 30px;
+    display: block;
+    background-image: url("../assets/Twitter_Social_Icon_Rounded_Square_Color.svg");
+    cursor: pointer;
+    .twitter_signIn {
+      width: 100%;
+      height: 100%;
+    }
+>>>>>>> Stashed changes
   }
 }
 </style>

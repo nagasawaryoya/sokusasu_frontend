@@ -22,5 +22,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  .submit {
+    width: 90px;
+    height: 30px;
+    border: solid 1px;
+    border-radius: 4px;
+    font-size: 12px;
+    border-color: #42b983;
+    background-color: #42b983;
+    color: #fff;
+    padding: 0;
+  }
 }
 </style>
