@@ -6,20 +6,20 @@
     <button v-on:click="signIn" class="signIn nomal_signIn">ログイン</button> -->
 
     <form action="/api/login" method="post">
-    <div>
-        <label>ユーザーID：</label>
-        <input type="text" name="username" v-model="username"/>
-    </div>
-    <div>
-        <label>パスワード：</label>
-        <input type="password" name="password" v-model="password"/>
-    </div>
-    <div>
-        <input type="submit" value="ログイン"/>
-    </div>
-</form>
+      <div>
+          <label>お名前：</label>
+          <input type="text" name="username" v-model="username"/>
+      </div>
+      <div>
+          <label>パスワード：</label>
+          <input type="password" name="password" v-model="password"/>
+      </div>
+      <!-- 通常ログイン -->
+      <input class="signIn nomal_signIn" type="submit" value="ログイン"/>
+    </form>
+    <!-- twitterログイン -->
     <div class="twitter_auth_wrap">
-      <a href="/api/auth/twitter" class="signIn twitter_signIn">twitter</a>
+      <a href="/api/auth/twitter" class="twitter_signIn"></a>
     </div>
     <p>アカウントを作っていない方は 
       <router-link to="/signup">こちら</router-link>
@@ -35,7 +35,7 @@ export default {
   name: 'Signin',
   data () {
     return {
-      username: '1',
+      username: 'テストユーザー',
       password: 'password',
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',
@@ -48,25 +48,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-input {
-  margin: 10px 0;
-  padding: 10px;
-}
-
 .signin_wrap {
   margin-top: 20px;
   display: flex;
@@ -85,11 +66,18 @@ input {
     border-color: #42b983;
     background-color: #42b983;
     color: #fff;
+    padding: 0;
   }
-  .twitter_signIn {
-    border-color: #28b7ef;
-    background-color: #28b7ef;
-    color: #fff;
+  .twitter_auth_wrap {
+    width: 30px;
+    height: 30px;
+    display: block;
+    background-image: url("../assets/Twitter_Social_Icon_Rounded_Square_Color.svg");
+    cursor: pointer;
+    .twitter_signIn {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 </style>
