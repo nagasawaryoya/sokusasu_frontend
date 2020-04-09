@@ -46,5 +46,12 @@ input {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  .signIn {
+    width: 90px;
+    height: 30px;
+    border: solid 1px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
 }
 </style>

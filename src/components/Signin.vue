@@ -15,7 +15,7 @@
           <input type="password" name="password" v-model="password"/>
       </div>
       <!-- 通常ログイン -->
-      <input class="signIn nomal_signIn" type="submit" value="ログイン"/>
+      <input class="signIn" type="submit" value="ログイン"/>
     </form>
     <!-- twitterログイン -->
     <div class="twitter_auth_wrap">
@@ -54,20 +54,6 @@ export default {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-
-  .signIn {
-    width: 90px;
-    height: 30px;
-    border: solid 1px;
-    border-radius: 4px;
-    font-size: 12px;
-  }
-  .nomal_signIn {
-    border-color: #42b983;
-    background-color: #42b983;
-    color: #fff;
-    padding: 0;
-  }
   .twitter_auth_wrap {
     width: 30px;
     height: 30px;
