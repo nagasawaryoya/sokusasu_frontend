@@ -1,10 +1,6 @@
 <template>
   <div class="signin_wrap">
     <h2>ログイン</h2>
-    <!-- <input type="text" name="username" placeholder="Id" v-model="username">
-    <input type="password" name='password' placeholder="Password" v-model="password">
-    <button v-on:click="signIn" class="signIn nomal_signIn">ログイン</button> -->
-
     <form action="/api/login" method="post">
       <div>
           <label>お名前：</label>
