@@ -11,7 +11,7 @@
           <input type="password" name="password" v-model="password"/>
       </div>
       <!-- 通常ログイン -->
-      <input class="signIn" type="submit" value="ログイン"/>
+      <input class="submit" type="submit" value="ログイン"/>
     </form>
     <!-- twitterログイン -->
     <div class="twitter_auth_wrap">
@@ -59,6 +59,7 @@ export default {
     .twitter_signIn {
       width: 100%;
       height: 100%;
+      display: block;
     }
   }
 }
