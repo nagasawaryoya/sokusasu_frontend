@@ -2,12 +2,17 @@
   <div id="component_wrap">
     <div class="talk_wrap">
       <!-- MyMessage start -->
-      <!-- <pre> -->
-      <div class="myMsg" v-for="(MyMessage, index) in MyMessages" :key="index">{{ MyMessage }}</div>
-      <!-- </pre> -->
-      <!-- MyMessage end-->
-      <!-- friendsMessage start -->
-      <div class="friendsMsg">{{ friendsMsg }}</div>
+      <template v-for="(message, index) in messages">
+        <template v-if="message.name == 'テストユーザー'">
+        <div class="myMsg" :key="index">{{ message.name }}: {{ message.message }}</div>
+        </template>
+        <!-- </pre> -->
+        <!-- MyMessage end-->
+        <!-- friendsMessage start -->
+        <template v-else>
+        <div class="friendsMsg" :key="index">{{ message.name }}: {{ message.message }}</div>
+        </template>
+      </template>
       <!-- friendsMessage end -->
     </div>
     <div class="messageInput_wrap">
@@ -21,7 +26,8 @@
 
 <script>
 // @ is an alias to /src
-import axios from "axios";
+// import axios from "axios";
+import io from 'socket.io-client';
 export default {
   name: 'Talk',
   components: {
@@ -29,10 +35,10 @@ export default {
   },
   data(){
     return{
+      socket : io('localhost:3000'),
+      name: '',
       textareaVal: '',
-      MyMessages: [],
-      // MyMessage: '',
-      friendsMsg: '',
+      messages: [],
     }
   },
   methods: {
@@ -46,34 +52,25 @@ export default {
         textarea.style.height = textarea.scrollHeight + 'px'
       });
     },
-    subumitClick() {
-      const sendedTextArea = this.$refs.adjust_textarea
-      this.MyMessages.push(this.textareaVal)
+    subumitClick(e) {
+      // メッセージの送信
+      e.preventDefault();
+      this.socket.emit('POST_MESSAGE', {
+          name: 'テストユーザー',// ハードコーディング
+          message: this.textareaVal
+      })
       this.textareaVal = ''
-      // テキストエリア初期化
-      sendedTextArea.style.height = '30px'
-
-      axios.get("/api/hoge",{
-        params: {
-          // 最後のメッセージ
-          message: this.MyMessages.slice(-1)[0],
-          room_id: 1
-          // mese: this.MyMessage
-        }
-      })
-      .then(res=>{
-          console.log('成功')
-          // this.MyMessages = res.data.message＜＝こいつが悪さしてるけど必要
-          console.log(res)//string
-      })
-      .catch(err => {
-        console.log(typeof err);
-      });
-    }
+    },
+  },
+  mounted() {
+    // メッセージの取得
+    this.socket.on('MESSAGE', (data) => {
+        this.messages = [...this.messages, data];
+        console.log(this.messages)
+    });
   }
 }
 </script>
-
 <style lang="scss">
 #component_wrap {
     width: 100%;
