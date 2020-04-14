@@ -4,7 +4,7 @@
     <form action="/api/login" method="post">
       <div>
           <label>お名前：</label>
-          <input type="text" name="username" v-model="username"/>
+          <input type="text" name="username" v-model="name"/>
       </div>
       <div>
           <label>パスワード：</label>
@@ -31,7 +31,7 @@ export default {
   name: 'Signin',
   data () {
     return {
-      username: 'テストユーザー',
+      name: 'テストユーザー',
       password: 'password',
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',
