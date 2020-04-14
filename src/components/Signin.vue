@@ -3,8 +3,8 @@
     <h2>ログイン</h2>
     <form action="/api/login" method="post">
       <div>
-          <label>お名前：</label>
-          <input type="text" name="username" v-model="name"/>
+          <label>メールアドレス：</label>
+          <input type="text" name="username" v-model="mail"/>
       </div>
       <div>
           <label>パスワード：</label>
@@ -31,7 +31,7 @@ export default {
   name: 'Signin',
   data () {
     return {
-      name: 'テストユーザー',
+      mail: 'nagasawaryoya@gmail.com',
       password: 'password',
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',
