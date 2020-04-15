@@ -9,7 +9,7 @@ const user = {
     id: 0
   }
 }
-const mutations = {
+const mutation = {
   getUserId (state, val) {
     state.user.id = val
   },
@@ -22,12 +22,6 @@ export default new Vuex.Store({
     key: 'sokusasu',
     storage: window.sessionStorage
   })],
-  // mutations: {
-  //   // State初期化用
-  //   RESET_VUEX_STATE(state) {
-  //     Object.assign(state, JSON.parse(localStorage.getItem('user')));
-  //   },
-  // },
   actions: {
   },
   modules: {
