@@ -17,7 +17,7 @@ const mutation = {
 
 export default new Vuex.Store({
   state: user,
-  mutations,
+  mutation,
   plugins: [createPersistedState({
     key: 'sokusasu',
     storage: window.sessionStorage
