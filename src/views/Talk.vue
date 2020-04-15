@@ -56,7 +56,7 @@ export default {
       // メッセージの送信
       e.preventDefault();
       this.socket.emit('POST_MESSAGE', {
-          name: 'テストユーザー',// ハードコーディング
+          name: this.$store.state.user.id,
           message: this.textareaVal
       })
       this.textareaVal = ''

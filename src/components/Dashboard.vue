@@ -9,6 +9,7 @@
     import axios from "axios"    
     import router from "../router"    
     import Nav from '@/components/Nav.vue'
+    import store from '../store'
     export default {    
       name: "Dashboard",    
       components: {
@@ -17,17 +18,22 @@
       data() {    
         return {    
           user: {    
-            name: "仮置き"    
-          }    
+            name: "仮置き"
+          },
+          // ユーザーid
+          id: 0
         }    
-      },    
-      methods: {    
-        getUserData: function() {        
+      },
+      methods: {
+        getUserData: function() {    
           axios.get("/api/user")    
           .then((response) => {    
               console.log(response)
               if(response != ''){
                 this.$set(this, "user", response.data.user)
+                this.id = response.data.user.id
+                // console.log(this.id)
+                store.commit('getUserId', this.id)
               } else {
                 router.push("/")   
               }
@@ -37,9 +43,14 @@
               router.push("/")    
           })    
         },
+        getUserId: function() {
+          store.commit('getUserId', this.id)
+        },
       },
       mounted() {
         this.getUserData()
+
+        console.log(this.$store.state.user.id)
       }
     }
 </script>
