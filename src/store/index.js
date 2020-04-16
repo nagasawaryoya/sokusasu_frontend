@@ -9,7 +9,7 @@ const user = {
     id: 0
   }
 }
-const mutation = {
+const mutations = {
   getUserId (state, val) {
     state.user.id = val
   },
@@ -17,7 +17,7 @@ const mutation = {
 
 export default new Vuex.Store({
   state: user,
-  mutation,
+  mutations,
   plugins: [createPersistedState({
     key: 'sokusasu',
     storage: window.sessionStorage

@@ -2,6 +2,7 @@
     <div>    
         <h2>Dashboard</h2>
         <Nav />
+        <p>id: {{ this.$store.state.user.id }}</p>
         <p>OName: {{ user.name }}</p>    
     </div>
 </template>
@@ -33,7 +34,7 @@
                 this.$set(this, "user", response.data.user)
                 this.id = response.data.user.id
                 // console.log(this.id)
-                store.commit('getUserId', this.id)
+                this.getUserId()
               } else {
                 router.push("/")   
               }
@@ -49,8 +50,6 @@
       },
       mounted() {
         this.getUserData()
-
-        console.log(this.$store.state.user.id)
       }
     }
 </script>
