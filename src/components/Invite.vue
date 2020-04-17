@@ -1,7 +1,7 @@
 <template>
   <div id="invite">
     <div class="invite_wrap">
-      <h3 class="title">お誘い一覧</h3>
+      <h3 class="title"><span class="title_bar"></span>お誘い一覧</h3>
         <div class="invite_block">
           <ul>
             <li class="invite_list">
@@ -71,6 +71,13 @@ p {
     font-weight: 400;
     margin-left: 80px;
     color: #424242;
+    .title_bar {
+      display: inline-block;
+      width: 2px;
+      height: 22px;
+      background-color: #42b983;
+      margin-right: 4px;
+    }
   }
   .invite_wrap {
     width: 100%;
