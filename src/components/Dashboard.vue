@@ -1,18 +1,20 @@
 <template>
     <div>    
-        <h2>Dashboard</h2>
         <Nav />
-        <p>OName: {{ user.name }}</p>    
+        <!-- <p>OName: {{ user.name }}</p>  -->
+        <Invite />
     </div>
 </template>
 <script>
     import axios from "axios"    
     import router from "../router"    
     import Nav from '@/components/Nav.vue'
+    import Invite from '@/components/Invite.vue'
     export default {    
       name: "Dashboard",    
       components: {
-        Nav
+        Nav,
+        Invite
       },
       data() {    
         return {    

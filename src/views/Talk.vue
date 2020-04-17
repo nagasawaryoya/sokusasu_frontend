@@ -18,7 +18,7 @@
     <div class="messageInput_wrap">
       <div class="input_wrap">
         <textarea class="messageInput" ref="adjust_textarea" @keydown="adjustHeight" v-model="textareaVal"></textarea>
-        <button class="msgSend" @click="subumitClick">送信</button>
+        <button class="msgSend submit ok" @click="subumitClick">送信</button>
       </div>
     </div>
   </div>
@@ -100,7 +100,7 @@ export default {
       text-align: left;
       border: solid 1px #deb887;
       background-color: #deb887;
-      color: #444444;
+      color: #757575;
       padding: 2px 5px;
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
@@ -115,7 +115,7 @@ export default {
       text-align: left;
       border: solid 1px #b0c4de;
       background-color: #b0c4de;
-      color: #444444;
+      color: #757575;
       padding: 2px 5px;
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
@@ -140,9 +140,9 @@ export default {
       .msgSend {
         height: 30px;
         width: 15%;
-        border: solid 1px #4DA3EB;
+        // border: solid 1px #4DA3EB;
         color: #fff;
-        background-color: #4DA3EB;
+        // background-color: #4DA3EB;
         border-radius: 4px;
         box-sizing: border-box;
       }
