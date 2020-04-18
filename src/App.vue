@@ -48,12 +48,14 @@ input {
   font-size: 12px;
   .submit,
   .cancel {
+    display: inline-block;
     width: 90px;
     height: 30px;
     line-height: 30px;
     border: solid 1px;
-    border-radius: 4px;
+    border-radius: 30px;
     font-size: 12px;
+    font-weight: 400;
     color: #fff;
     padding: 0;
     cursor: pointer;
@@ -68,13 +70,15 @@ input {
   }
   .ok-button,
   .ng-button {
+    display: inline-block;
     width: 128px;
     height: 38px;
-    line-height: 30px;
+    line-height: 38px;
     border: solid 1px #424242;
     border-radius: 30px;
     font-size: 14px;
     color: #424242;
+    font-weight: 400;
     padding: 0;
     cursor: pointer;
   }

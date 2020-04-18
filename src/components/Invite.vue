@@ -1,50 +1,51 @@
 <template>
   <div id="invite">
     <div class="invite_wrap">
-      <h3 class="title"><span class="title_bar"></span>お誘い一覧</h3>
-        <div class="invite_block">
-          <ul>
-            <li class="invite_list">
-              <div class="invite_info">
-                <p class="invite_user">誘ってきたユーザー</p>
-                <p class="invite_dateTime">2019年５月6日〜2019年５月8日</p>
-                <!-- <p>2019年５月6日 19:00~21:00</p> -->
-                <!-- <p>2019年５月6日</p> -->
-                </div>
-              <div class="action_block">
-                <a class="failure_button show_detail_invite-button">詳細を見る</a>
-                <button class="success_button ok-button">行ける</button>
-                <button class="failure_button ng-button">都合悪い...</button>
+      <div class="content_head">
+        <h3 class="title"><span class="title_bar"></span>お誘い一覧</h3>
+        <a href="" class="new_invite-button ok-button">新たに誘う</a>
+      </div>
+      <div class="invite_block">
+        <ul>
+          <li class="invite_list">
+            <div class="invite_info">
+              <p class="invite_user">誘ってきたユーザー</p>
+              <p class="invite_dateTime">2019年５月6日〜2019年５月8日</p>
+              <!-- <p>2019年５月6日 19:00~21:00</p> -->
+              <!-- <p>2019年５月6日</p> -->
               </div>
-            </li>
-            <li class="invite_list">
-              <div class="invite_info">
-                <p class="invite_user">誘ってきたユーザー</p>
-                <p class="invite_dateTime">2019年５月6日〜2019年５月8日</p>
-                <!-- <p>2019年５月6日 19:00~21:00</p> -->
-                <!-- <p>2019年５月6日</p> -->
-                </div>
-              <div class="action_block">
-                <a class="failure_button show_detail_invite-button">詳細を見る</a>
-                <button class="success_button ok-button">行ける</button>
-                <button class="failure_button ng-button">都合悪い...</button>
+            <div class="action_block">
+              <a class="failure_button show_detail_invite-button">詳細を見る</a>
+              <button class="success_button ok-button">行ける</button>
+              <button class="failure_button ng-button">都合悪い...</button>
+            </div>
+          </li>
+          <li class="invite_list">
+            <div class="invite_info">
+              <p class="invite_user">誘ったユーザー</p>
+              <p class="invite_dateTime">2019年５月6日〜2019年５月8日</p>
+              <!-- <p>2019年５月6日 19:00~21:00</p> -->
+              <!-- <p>2019年５月6日</p> -->
               </div>
-            </li>
-            <li class="invite_list">
-              <div class="invite_info">
-                <p class="invite_user">誘ってきたユーザー</p>
-                <p class="invite_dateTime">2019年５月6日〜2019年５月8日</p>
-                <!-- <p>2019年５月6日 19:00~21:00</p> -->
-                <!-- <p>2019年５月6日</p> -->
-                </div>
-              <div class="action_block">
-                <a class="failure_button show_detail_invite-button">詳細を見る</a>
-                <button class="success_button ok-button">行ける</button>
-                <button class="failure_button ng-button">都合悪い...</button>
+            <div class="action_block">
+              <a class="failure_button show_detail_invite-button">詳細を見る</a>
+            </div>
+          </li>
+          <li class="invite_list">
+            <div class="invite_info">
+              <p class="invite_user">誘ってきたユーザー</p>
+              <p class="invite_dateTime">2019年５月6日〜2019年５月8日</p>
+              <!-- <p>2019年５月6日 19:00~21:00</p> -->
+              <!-- <p>2019年５月6日</p> -->
               </div>
-            </li>
-          </ul>
-        </div>
+            <div class="action_block">
+              <a class="failure_button show_detail_invite-button">詳細を見る</a>
+              <button class="success_button ok-button">行ける</button>
+              <button class="failure_button ng-button">都合悪い...</button>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -65,18 +66,30 @@ p {
   height: 100%;
   padding: 60px 200px;
   box-sizing: border-box;
-  .title {
-    text-align: left;
-    font-size: 28px;
-    font-weight: 400;
-    margin-left: 80px;
-    color: #424242;
-    .title_bar {
-      display: inline-block;
-      width: 2px;
-      height: 22px;
+  .content_head {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 108px 0 80px;
+    box-sizing: border-box;
+    .title {
+      text-align: left;
+      font-size: 28px;
+      font-weight: 400;
+      color: #424242;
+      .title_bar {
+        display: inline-block;
+        width: 2px;
+        height: 22px;
+        background-color: #42b983;
+        margin-right: 4px;
+      }
+    }
+    .new_invite-button {
       background-color: #42b983;
-      margin-right: 4px;
+      border: solid 1px #42b983;
+      color: #fff;
     }
   }
   .invite_wrap {
@@ -113,16 +126,25 @@ p {
             font-weight: 200;
           }
         }
-        .ok-button {
-          margin: 0 14px 0 18px;
-        }
-        .show_detail_invite-button {
-          background-color: #fff;
-          color: #424242;
-          cursor: pointer;
-        }
-        .show_detail_invite-button:hover {
-          color: #42b983;
+        .action_block {
+          width: 392px;
+          text-align: left;
+          .ok-button {
+            margin: 0 14px 0 18px;
+          }
+          .show_detail_invite-button {
+            background-color: #fff;
+            display: inline-block;
+            width: 100px;
+            height: 32px;
+            line-height: 33px;
+            color: #424242;
+            cursor: pointer;
+            text-align: center;
+          }
+          .show_detail_invite-button:hover {
+            color: #42b983;
+          }
         }
       }
     }
