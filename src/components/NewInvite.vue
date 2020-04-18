@@ -57,8 +57,9 @@
             <div>
               <textarea name="other" cols="30" rows="10"></textarea>
             </div>
-          </div>          
-          <input name="id" class="submit" type="submit" :value="id" @click="inviteCreate"/>
+          </div>    
+          <!-- user_id = 誘った側 -->
+          <input name="user_id" class="submit" type="submit" :value="user_id" @click="inviteCreate"/>
         </form>
       </div>
     </div>
@@ -74,12 +75,12 @@ export default {
   },
   data () {
     return {
-      id: 'ログイン'
+      user_id: '誘う' //初期値はボタンに表示させるため"誘う"としている
     }
   },
   methods: {
     inviteCreate: function() {        
-      
+      this.user_id = this.$store.state.user.id
     }
   }
 }
