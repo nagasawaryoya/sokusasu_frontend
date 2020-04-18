@@ -49,8 +49,8 @@ export default {
         }
       })
       .then(res=>{
-          console.log(res);
-          router.push("/")  
+        console.log(res);
+        router.push("/")
       })
       .catch(err => {
         console.log(err);

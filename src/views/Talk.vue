@@ -3,7 +3,7 @@
     <div class="talk_wrap">
       <!-- MyMessage start -->
       <template v-for="(message, index) in messages">
-        <template v-if="message.name == 'テストユーザー'">
+        <template v-if="message.name == name">
         <div class="myMsg" :key="index">{{ message.name }}: {{ message.message }}</div>
         </template>
         <!-- </pre> -->
@@ -56,13 +56,15 @@ export default {
       // メッセージの送信
       e.preventDefault();
       this.socket.emit('POST_MESSAGE', {
-          name: 'テストユーザー',// ハードコーディング
+          name: this.$store.state.user.name,
           message: this.textareaVal
       })
       this.textareaVal = ''
     },
   },
   mounted() {
+    this.name = this.$store.state.user.name
+
     // メッセージの取得
     this.socket.on('MESSAGE', (data) => {
         this.messages = [...this.messages, data];
