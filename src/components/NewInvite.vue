@@ -31,7 +31,17 @@
               <span> 〜 </span>
               <input class="" type="time" name="end_time">
             </div>
-          </div>          
+          </div>  
+          <div>
+            <div>
+              <label for="friend">誘う友達</label>
+            </div>
+            <div>
+              <select name="friend_user_id" id="">
+                <option value="8">友達一号</option>
+              </select>
+            </div>
+          </div>                    
           <div>
             <div>
               <label for="localte">場所</label>
