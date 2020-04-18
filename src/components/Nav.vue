@@ -1,8 +1,9 @@
 <template>
     <div id="nav">
-      <router-link to="/home">Home</router-link> |
-      <router-link to="/talk">Tolk</router-link>|
-      <router-link to="/tweet">Post</router-link> |
+      <!-- <router-link to="/home">Home</router-link> | -->
+      <router-link to="/dashboard">一覧</router-link> |
+      <router-link to="/talk">トーク</router-link>|
+      <router-link to="/tweet">投稿</router-link> |
     </div>
 </template>
 

@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Signup from '@/components/Signup'
 import Signin from '@/components/Signin'
 import Dashboard from '@/components/Dashboard'
+import NewInvite from '@/components/NewInvite'
 import Dummy from '@/components/Dummy'
 
 Vue.use(VueRouter)
@@ -28,6 +29,11 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard
+  },
+  {
+    path: '/newInvite',
+    name: 'NewInvite',
+    component: NewInvite
   },
   {
     path: '/api/auth/twitter/callback',

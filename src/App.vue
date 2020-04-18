@@ -1,11 +1,18 @@
 <template>
   <div id="app">
+    <Nav />
     <router-view/>
   </div>
 </template>
 
 <script>
-
+  import Nav from '@/components/Nav.vue'
+  export default {    
+    name: "App",    
+    components: {
+      Nav
+    },
+  }
 </script>
 
 <style lang="scss">
@@ -49,8 +56,8 @@ input {
   .submit,
   .cancel {
     display: inline-block;
-    width: 90px;
-    height: 30px;
+    width: 140px;
+    height: 40px;
     line-height: 30px;
     border: solid 1px;
     border-radius: 30px;
@@ -89,6 +96,48 @@ input {
   .ng-button:hover {
     border-color: #e45454;
     color: #e45454;
+  }
+  .box {
+    width: 100%;
+    height: 100%;
+    padding: 60px 174px;
+    box-sizing: border-box;
+    .content_wrap {
+      width: 100%;
+      height: 100%;
+      padding: 30px 0px;
+      background-color: #fff;
+      box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+      border-radius: 8px;
+      .content_block {
+        display: block;
+        font-size: 14px;
+        font-weight: normal;
+        padding: 0 72px 0 60px;
+        
+      }
+      .content_head {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 72px 0 60px;
+        box-sizing: border-box;
+        .title {
+          text-align: left;
+          font-size: 28px;
+          font-weight: 400;
+          color: #424242;
+          .title_bar {
+            display: inline-block;
+            width: 2px;
+            height: 22px;
+            background-color: #42b983;
+            margin-right: 4px;
+          }
+        }
+      }
+    }
   }
 }
 </style>

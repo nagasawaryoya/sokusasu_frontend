@@ -1,11 +1,13 @@
 <template>
-  <div id="invite">
-    <div class="invite_wrap">
+  <div id="invite" class="box">
+    <div class="content_wrap">
       <div class="content_head">
         <h3 class="title"><span class="title_bar"></span>お誘い一覧</h3>
-        <a href="" class="new_invite-button ok-button">新たに誘う</a>
+        <div class="button_design_help">
+          <a href="/#/newInvite" class="new_invite-button ok-button">新たに誘う</a>
+        </div>
       </div>
-      <div class="invite_block">
+      <div class="content_block">
         <ul>
           <li class="invite_list">
             <div class="invite_info">
@@ -61,54 +63,27 @@ p {
   margin: 0;
   text-align: left;
 }
-#invite {
-  width: 100%;
-  height: 100%;
-  padding: 60px 200px;
-  box-sizing: border-box;
-  .content_head {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 108px 0 80px;
-    box-sizing: border-box;
-    .title {
-      text-align: left;
-      font-size: 28px;
-      font-weight: 400;
-      color: #424242;
-      .title_bar {
-        display: inline-block;
-        width: 2px;
-        height: 22px;
-        background-color: #42b983;
-        margin-right: 4px;
+body {
+  #app {
+    #invite {
+      .button_design_help {
+        width: 50%;
+        display: flex;
+        justify-content: flex-end;
+        .new_invite-button {
+          background-color: #42b983;
+          border: solid 1px #42b983;
+          color: #fff;
+          margin-right: 32px;
+        }
+        .new_invite-button:hover {
+          color: #fff;
+        }
       }
-    }
-    .new_invite-button {
-      background-color: #42b983;
-      border: solid 1px #42b983;
-      color: #fff;
-    }
-  }
-  .invite_wrap {
-    width: 100%;
-    height: 100%;
-    padding: 30px 0px;
-    background-color: #fff;
-    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    border-radius: 8px;
-    .invite_block {
-        display: block;
-        font-size: 14px;
-        font-weight: normal;
-        margin-bottom: 20px;
       .invite_list {
         display: flex;
         display: -webkit-box;
         display: -ms-flexbox;
-        margin: 0 80px;
         padding: 30px 24px 22px;
         -webkit-box-align: center;
         -ms-flex-align: center;
@@ -127,8 +102,10 @@ p {
           }
         }
         .action_block {
-          width: 392px;
           text-align: left;
+          width: 50%;
+          display: flex;
+          align-items: baseline;
           .ok-button {
             margin: 0 14px 0 18px;
           }
