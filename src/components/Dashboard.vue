@@ -6,11 +6,13 @@
 </template>
 <script>
     import axios from "axios"    
-    import router from "../router"
+    import router from "../router"    
+    import Invite from '@/components/Invite.vue'
     import store from '../store'
     export default {    
       name: "Dashboard",    
       components: {
+        Invite
       },
       data() {    
         return {    
