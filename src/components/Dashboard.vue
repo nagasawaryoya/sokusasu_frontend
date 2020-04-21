@@ -1,7 +1,7 @@
 <template>
     <div>    
       <!-- <p>OName: {{ user.name }}</p>  -->
-      <Invite />
+      <Invite :invite-details="inviteDetails" />
     </div>
 </template>
 <script>
@@ -24,10 +24,12 @@
             password: '',
             provider: ''
           },
+          inviteDetails: []
         }    
       },
       methods: {
-        getUserData: function() {    
+        // ログインしたユーザーの情報を取得
+        getUserData() {    
           axios.get("/api/user")    
           .then((response) => {    
               console.log(response)
@@ -39,7 +41,6 @@
                 this.user.mail = response.data.user.mail
                 this.user.password = response.data.user.password
                 this.user.provider = response.data.user.provider
-                // console.log(this.id)
                 this.getUserId()
               } else {
                 router.push("/")   
@@ -50,12 +51,25 @@
               router.push("/")    
           })    
         },
-        getUserId: function() {
+        // ログインしたユーザーのidをstoreに保存
+        getUserId() {
           store.commit('getUserId', this.user)
         },
+        // 誘った + 誘われた情報取得
+        getInviteList() {    
+          axios.get("/api/inviteList?id="+this.$store.state.user.id)    
+          .then((response) => {    
+            this.inviteDetails = response
+            console.log(this.inviteDetails)
+          })
+          .catch((errors) => {
+            console.log(errors)      
+          })    
+        },        
       },
       mounted() {
         this.getUserData()
+        this.getInviteList()
       }
     }
 </script>

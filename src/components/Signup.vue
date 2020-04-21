@@ -35,6 +35,7 @@ export default {
     }
   },
   methods: {
+    // アカウント登録ボタンクリック時
     registClick() {
       const name = this.name
       const mail = this.mail

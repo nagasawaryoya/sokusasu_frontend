@@ -42,6 +42,7 @@ export default {
     }
   },
   methods: {
+    // エンタークリックでテキストエリアの幅を広げる
     adjustHeight(){
       const textarea = this.$refs.adjust_textarea
       const resetHeight = new Promise(function(resolve) {
@@ -52,8 +53,8 @@ export default {
         textarea.style.height = textarea.scrollHeight + 'px'
       });
     },
+    // メッセージの送信
     subumitClick(e) {
-      // メッセージの送信
       e.preventDefault();
       this.socket.emit('POST_MESSAGE', {
           name: this.$store.state.user.name,

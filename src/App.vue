@@ -53,6 +53,7 @@ input {
   text-align: center;
   color: #757575;
   font-size: 12px;
+  position: relative;
   .submit,
   .cancel {
     display: inline-block;

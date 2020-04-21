@@ -38,7 +38,8 @@
             </div>
             <div>
               <select name="friend_user_id" id="">
-                <option value="8">友達一号</option>
+                <option value="1">永澤</option>
+                <option value="2">友達一号</option>
               </select>
             </div>
           </div>                    
@@ -89,7 +90,8 @@ export default {
     }
   },
   methods: {
-    inviteCreate: function() {        
+    // 新規お誘い作成
+    inviteCreate() {        
       this.user_id = this.$store.state.user.id
     }
   }
