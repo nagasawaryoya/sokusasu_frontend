@@ -25,7 +25,7 @@
               <a class="failure_button show_detail_invite-button" v-on:click="inviteDetailModalOpen(index)">詳細を見る</a>
               <template v-if="inviteDetail.target_user_id==user.id">
                 <button class="failure_button ng-button">都合悪い...</button>
-                <button class="success_button ok-button">行ける</button>
+                <button class="success_button ok-button" v-on:click="join(inviteDetails.data[index]['id'])">行ける</button><!-- id = invite_id -->
               </template>
             </div>
             <div class="inviteDetail_modal" v-show="modalTrigger">
@@ -61,9 +61,9 @@
                   <td> {{ inviteDetails.data[modalNumber]['other'] }} </td>
                 </tr>
               </table>
-              <template v-if="inviteDetail.target_user_id==user.id">
+              <template v-if="inviteDetails.data[modalNumber]['target_user_id']==user.id">
                 <button class="failure_button ng-button sorry_inModal">都合悪い...</button>
-                <button class="success_button ok-button">行ける</button>
+                <button class="success_button ok-button" v-on:click="join(inviteDetails.data[index]['id'])">行ける</button>
               </template>
             </div>
             <div class="modal_overlay" v-show="modalTrigger" v-on:click="inviteDetailModalClose"></div>
@@ -75,6 +75,8 @@
 </template>
 
 <script>
+import axios from "axios"    
+import router from "../router"    
 export default {
   name: 'Invite',
   props: {
@@ -86,7 +88,7 @@ export default {
         id: this.$store.state.user.id,
       },
       modalNumber: 0,
-      modalTrigger: false
+      modalTrigger: false,
     }
   },
   methods: {
@@ -96,6 +98,16 @@ export default {
     },
     inviteDetailModalClose() {
       this.modalTrigger = false
+    },
+    join(invite_id) {
+      axios.get("/api/join?user_id="+ this.user.id +"&invite_id="+ invite_id )
+      .then((response) => {
+        console.log(response)
+      })    
+      .catch((errors) => {
+          console.log(errors)
+          router.push("/")
+      })
     }
   }
 }
@@ -219,7 +231,7 @@ body {
           // モーダルの中身
           .modal_title {
             font-size: 22px;
-            margin: 10px 0 20px;
+            margin: 10px 0 35px;
           }
           .modal_conten_table {
             margin: 0 auto;

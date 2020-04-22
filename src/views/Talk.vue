@@ -1,156 +1,128 @@
 <template>
   <div id="component_wrap">
     <div class="talk_wrap">
-      <!-- MyMessage start -->
-      <template v-for="(message, index) in messages">
-        <template v-if="message.name == name">
-        <div class="myMsg" :key="index">{{ message.name }}: {{ message.message }}</div>
-        </template>
-        <!-- </pre> -->
-        <!-- MyMessage end-->
-        <!-- friendsMessage start -->
-        <template v-else>
-        <div class="friendsMsg" :key="index">{{ message.name }}: {{ message.message }}</div>
-        </template>
-      </template>
-      <!-- friendsMessage end -->
+      <ul class="talk_list">
+        <li class="room_door">
+          <div class="top_icon"></div><!-- TODOトプ画 -->
+          <div class="friend_window">
+            <div>友達のなまえ</div>
+            <div>トークの冒頭と三点リーダー...</div>
+          </div>
+          <div class="last_get_message_date">AM 19:10</div>
+        </li>
+        <li class="room_door">
+          <div class="top_icon"></div><!-- TODOトプ画 -->
+          <div class="friend_window">
+            <div class="friend_name">友達のなまえ</div>
+            <div>トークの冒頭と三点リーダー...</div>
+          </div>
+          <div class="last_get_message_date">昨日</div>
+        </li>
+        <li class="room_door">
+          <div class="top_icon"></div><!-- TODOトプ画 -->
+          <div class="friend_window">
+            <div class="friend_name">友達のなまえ</div>
+            <div>トークの冒頭と三点リーダー...</div>
+          </div>
+          <div class="last_get_message_date">月曜日</div>
+        </li>
+        <li class="room_door">
+          <div class="top_icon"></div><!-- TODOトプ画 -->
+          <div class="friend_window">
+            <div class="friend_name">友達のなまえ</div>
+            <div>トークの冒頭と三点リーダー...</div>
+          </div>
+          <div class="last_get_message_date">3/5</div>
+        </li>
+        <li class="room_door">
+          <div class="top_icon"></div><!-- TODOトプ画 -->
+          <div class="friend_window">
+            <div class="friend_name">友達のなまえ</div>
+            <div>トークの冒頭と三点リーダー...</div>
+          </div>
+          <div class="last_get_message_date">一昨日</div>
+        </li>            
+        <li class="room_door">
+          <div class="top_icon"></div><!-- TODOトプ画 -->
+          <div class="friend_window">
+            <div class="friend_name">友達のなまえ</div>
+            <div>トークの冒頭と三点リーダー...</div>
+          </div>
+          <div class="last_get_message_date">金曜日</div>
+        </li>
+      </ul>
     </div>
-    <div class="messageInput_wrap">
-      <div class="input_wrap">
-        <textarea class="messageInput" ref="adjust_textarea" @keydown="adjustHeight" v-model="textareaVal"></textarea>
-        <button class="msgSend submit ok" @click="subumitClick">送信</button>
-      </div>
-    </div>
+    <Room />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import axios from "axios";
-import io from 'socket.io-client';
+import Room from '@/components/Room.vue'
 export default {
   name: 'Talk',
   components: {
-
+    Room
   },
   data(){
     return{
-      socket : io('localhost:3000'),
-      name: '',
-      textareaVal: '',
-      messages: [],
+
     }
   },
   methods: {
-    // エンタークリックでテキストエリアの幅を広げる
-    adjustHeight(){
-      const textarea = this.$refs.adjust_textarea
-      const resetHeight = new Promise(function(resolve) {
-        resolve(textarea.style.height = 'auto')
-      });
-      resetHeight.then(function(){
-        // テキストエリアを広げる
-        textarea.style.height = textarea.scrollHeight + 'px'
-      });
-    },
-    // メッセージの送信
-    subumitClick(e) {
-      e.preventDefault();
-      this.socket.emit('POST_MESSAGE', {
-          name: this.$store.state.user.name,
-          message: this.textareaVal
-      })
-      this.textareaVal = ''
-    },
+
   },
   mounted() {
-    this.name = this.$store.state.user.name
 
-    // メッセージの取得
-    this.socket.on('MESSAGE', (data) => {
-        this.messages = [...this.messages, data];
-        console.log(this.messages)
-    });
   }
 }
 </script>
 <style lang="scss">
+li {
+  margin: 0;
+}
 #component_wrap {
-    width: 100%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  border: solid 1px #757575;
+  color: #424242;
+  .talk_wrap {
+    width: 45%;
     height: 100%;
-  .talk_wrap{
-    width: 100%;
-    height: 85%;
-
-    .myMsgArea,
-    .friendsMsgArea {
-    width: 50%;
-    height: 90%;
-    }
-
-    .myMsgArea {
-      float: right;
-    }
-
-    .friendsMsgArea {
-      float: left;
-    }
-    .myMsg {
-      height: auto;
-      max-width: 60%;
-      width: max-content;
-      word-break: break-all;
-      text-align: left;
-      border: solid 1px #deb887;
-      background-color: #deb887;
-      color: #757575;
-      padding: 2px 5px;
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-      margin-left: auto;
-      white-space: pre;
-    }
-    .friendsMsg {
-      height: auto;
-      max-width: 60%;
-      width: max-content;
-      word-break: break-all;
-      text-align: left;
-      border: solid 1px #b0c4de;
-      background-color: #b0c4de;
-      color: #757575;
-      padding: 2px 5px;
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-      margin-right: auto;
-    }
-  }
-  .messageInput_wrap {
-    width: 100%;
-    height: 30px;
+    border-right: solid 1px #eceff1;
+    .talk_list {
     display: flex;
-    .messageInput {
-      width: 85%;
-      height: 100%;
-      word-break: break-all;
-    }
-    .input_wrap {
+    align-items: start;
+    flex-direction: column;
+    margin: 0;
+    .room_door {
       width: 100%;
-      .messageInput {
-        border: solid 1px #444444;
-        box-sizing: border-box;
+      height: 80px;
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 200;
+      cursor: pointer;
+      .friend_window {
+        text-align: left;
+        .friend_name {
+          font-size: 14px;
+          padding-bottom: 3px;
+        }
       }
-      .msgSend {
-        height: 30px;
-        width: 15%;
-        // border: solid 1px #4DA3EB;
-        color: #fff;
-        // background-color: #4DA3EB;
-        border-radius: 4px;
-        box-sizing: border-box;
+      .last_get_message_date {
+        width: 60px;
+        text-align: left;
+        padding-left: 5px;
       }
+    }
+    .room_door:hover {
+      background-color: #42b983;
+      color: #fff;
+      // opacity: 0.1;
     }
   }
 }
-
+}
 </style>
