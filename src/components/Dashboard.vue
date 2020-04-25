@@ -27,11 +27,23 @@
           inviteDetails: []
         }    
       },
+      watch: {
+        user: {
+          handler: function (val) {
+            var user_id = val.id
+            this.getInviteList(user_id)
+
+            // ユーザーの状態を保持
+            store.commit('getUserId', this.user)
+          },
+          deep: true
+        }
+      },
       methods: {
         // ログインしたユーザーの情報を取得
         getUserData() {    
           axios.get("/api/user")
-          .then((response) => {    
+          .then((response) => {
               console.log(response)
               if(response != ''){
                 this.$set(this, "user", response.data.user)
@@ -51,13 +63,13 @@
               router.push("/")    
           })    
         },
-        // ログインしたユーザーのidをstoreに保存
+        // ログインしたユーザーをstoreに保存
         getUserId() {
           store.commit('getUserId', this.user)
         },
         // 誘った + 誘われた情報取得
-        getInviteList() {    
-          axios.get("/api/inviteList?id="+this.$store.state.user.id)    
+        getInviteList(user_id) {    
+          axios.get("/api/inviteList?id="+user_id)    
           .then((response) => {    
             this.inviteDetails = response
             console.log(this.inviteDetails)
@@ -67,11 +79,8 @@
           })    
         },        
       },
-      created() {
-        this.getUserData()
-      },
       beforeMount() {
-        this.getInviteList()
+        this.getUserData()
       },
     }
 </script>
