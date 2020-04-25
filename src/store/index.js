@@ -14,6 +14,19 @@ const user = {
     provider: ''
   }
 }
+// const roomInvites = {
+//   invites: {
+//     ivite_id: 0,
+//     target_user_id: 0,
+//     title: '',
+//     date: '',
+//     start_time: '',
+//     end_time: '',
+//     locate: '',
+//     max_price: '',
+//     min_price: '',
+//   }
+// }
 const mutations = {
   getUserId (state, val) {
     state.user.id = val.id
@@ -26,7 +39,10 @@ const mutations = {
 }
 
 export default new Vuex.Store({
-  state: user,
+  state: {
+    user,
+    // roomInvites
+  },
   mutations,
   plugins: [createPersistedState({
     key: 'sokusasu',

@@ -4,13 +4,12 @@
       <!-- MyMessage start -->
       <template v-for="(message, index) in messages">
         <template v-if="message.name == name">
-        <div class="myMsg" :key="index">{{ message.name }}: {{ message.message }}</div>
+          <div class="myMsg" :key="index">{{ message.name }}: {{ message.message }}</div>
         </template>
-        <!-- </pre> -->
         <!-- MyMessage end-->
         <!-- friendsMessage start -->
         <template v-else>
-        <div class="friendsMsg" :key="index">{{ message.name }}: {{ message.message }}</div>
+          <div class="friendsMsg" :key="index">{{ message.name }}: {{ message.message }}</div>
         </template>
       </template>
       <!-- friendsMessage end -->
@@ -33,12 +32,29 @@ export default {
   components: {
 
   },
+  props: {
+    room: Object,
+    roomMember: Object
+  },
   data(){
     return{
       socket : io('localhost:3000'),
       name: '',
       textareaVal: '',
       messages: [],
+      roomData: {}
+    }
+  },
+  watch: {
+    room: {
+      handler: function (val) {
+        this.socket.emit('from_client', { value: val.room_id });
+        // ルームに参加
+        this.socket.on('joinResult', function(result) {
+            console.log("ルームへ入室", result.room)
+        });
+      },
+      deep: true
     }
   },
   methods: {
@@ -53,6 +69,17 @@ export default {
         textarea.style.height = textarea.scrollHeight + 'px'
       });
     },
+    roomOpen() {
+      if(this.room) {
+        var room_id = this.room.room_id
+        this.socket.emit('from_client', { value: room_id });
+        console.log("ルーム情報を配信: " + room_id);
+        // ルームに参加
+        this.socket.on('joinResult', function(result) {
+          console.log("ルームへ入室", result.room)
+        });
+      }
+    },
     // メッセージの送信
     subumitClick(e) {
       e.preventDefault();
@@ -62,6 +89,9 @@ export default {
       })
       this.textareaVal = ''
     },
+  },
+  created() {
+
   },
   mounted() {
     this.name = this.$store.state.user.name

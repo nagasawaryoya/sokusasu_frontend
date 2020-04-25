@@ -24,7 +24,7 @@
             <div class="action_block">
               <a class="failure_button show_detail_invite-button" v-on:click="inviteDetailModalOpen(index)">詳細を見る</a>
               <template v-if="inviteDetail.target_user_id==user.id">
-                <button class="failure_button ng-button">都合悪い...</button>
+                <button class="failure_button ng-button" v-on:click="decline(inviteDetails.data[index]['id'])">都合悪い...</button>
                 <button class="success_button ok-button" v-on:click="join(inviteDetails.data[index]['id'])">行ける</button><!-- id = invite_id -->
               </template>
             </div>
@@ -62,7 +62,7 @@
                 </tr>
               </table>
               <template v-if="inviteDetails.data[modalNumber]['target_user_id']==user.id">
-                <button class="failure_button ng-button sorry_inModal">都合悪い...</button>
+                <button class="failure_button ng-button sorry_inModal" v-on:click="decline(inviteDetails.data[index]['id'])">都合悪い...</button>
                 <button class="success_button ok-button" v-on:click="join(inviteDetails.data[index]['id'])">行ける</button>
               </template>
             </div>
@@ -76,7 +76,6 @@
 
 <script>
 import axios from "axios"    
-import router from "../router"    
 export default {
   name: 'Invite',
   props: {
@@ -92,6 +91,10 @@ export default {
     }
   },
   methods: {
+    // ページリロード
+    reload() {
+      this.$router.go({path: this.$router.currentRoute.path, force: true});
+    },
     inviteDetailModalOpen(index) {
       this.modalTrigger = true
       this.modalNumber = index
@@ -99,14 +102,34 @@ export default {
     inviteDetailModalClose() {
       this.modalTrigger = false
     },
+    // お誘いに参加する
     join(invite_id) {
+      // モーダル閉じる
+      this.modalTrigger = false
       axios.get("/api/join?user_id="+ this.user.id +"&invite_id="+ invite_id )
       .then((response) => {
         console.log(response)
+        alert('お誘いに参加しました！トーク画面に移り詳細を決めましょう！')
+        this.reload();
       })    
       .catch((errors) => {
-          console.log(errors)
-          router.push("/")
+        console.log(errors)
+        alert('参加時にエラーが出ました。再度参加してください！')
+      })
+    },
+    // お誘いを断る
+    decline(invite_id) {
+      // モーダル閉じる
+      this.modalTrigger = false
+      axios.get("/api/decline?user_id="+ this.user.id +"&invite_id="+ invite_id )
+      .then((response) => {
+        console.log(response)
+        alert('お誘いをお断りしました...')
+        this.reload();
+      })
+      .catch((errors) => {
+        console.log(errors)
+        alert('お誘いのお断りに失敗しました。再度ボタンをクリックしてください')
       })
     }
   }

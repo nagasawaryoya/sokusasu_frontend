@@ -30,7 +30,7 @@
       methods: {
         // ログインしたユーザーの情報を取得
         getUserData() {    
-          axios.get("/api/user")    
+          axios.get("/api/user")
           .then((response) => {    
               console.log(response)
               if(response != ''){
@@ -67,9 +67,11 @@
           })    
         },        
       },
-      mounted() {
+      created() {
         this.getUserData()
+      },
+      beforeMount() {
         this.getInviteList()
-      }
+      },
     }
 </script>

@@ -86,6 +86,7 @@ export default {
   },
   data () {
     return {
+      // TODO 型がstring->intになるのダメな気する
       user_id: '誘う' //初期値はボタンに表示させるため"誘う"としている
     }
   },

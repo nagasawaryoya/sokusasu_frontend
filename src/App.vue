@@ -16,6 +16,7 @@
 </script>
 
 <style lang="scss">
+// TODO 共通のcssはファイル分けるべき？
 body {
   margin: 0;
   height: 100vh;

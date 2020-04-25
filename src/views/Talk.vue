@@ -2,61 +2,24 @@
   <div id="component_wrap">
     <div class="talk_wrap">
       <ul class="talk_list">
-        <li class="room_door">
-          <div class="top_icon"></div><!-- TODOトプ画 -->
+        <template v-for="(roomInfo, index) in roomInfos">
+        <li class="room_door" :key="index" v-on:click="goRoom(index)">
+          <div class="top_icon"></div><!-- TODO トプ画 -->
           <div class="friend_window">
-            <div>友達のなまえ</div>
+            <div class="friend_name">{{ roomInfo.title }}</div>
             <div>トークの冒頭と三点リーダー...</div>
           </div>
           <div class="last_get_message_date">AM 19:10</div>
         </li>
-        <li class="room_door">
-          <div class="top_icon"></div><!-- TODOトプ画 -->
-          <div class="friend_window">
-            <div class="friend_name">友達のなまえ</div>
-            <div>トークの冒頭と三点リーダー...</div>
-          </div>
-          <div class="last_get_message_date">昨日</div>
-        </li>
-        <li class="room_door">
-          <div class="top_icon"></div><!-- TODOトプ画 -->
-          <div class="friend_window">
-            <div class="friend_name">友達のなまえ</div>
-            <div>トークの冒頭と三点リーダー...</div>
-          </div>
-          <div class="last_get_message_date">月曜日</div>
-        </li>
-        <li class="room_door">
-          <div class="top_icon"></div><!-- TODOトプ画 -->
-          <div class="friend_window">
-            <div class="friend_name">友達のなまえ</div>
-            <div>トークの冒頭と三点リーダー...</div>
-          </div>
-          <div class="last_get_message_date">3/5</div>
-        </li>
-        <li class="room_door">
-          <div class="top_icon"></div><!-- TODOトプ画 -->
-          <div class="friend_window">
-            <div class="friend_name">友達のなまえ</div>
-            <div>トークの冒頭と三点リーダー...</div>
-          </div>
-          <div class="last_get_message_date">一昨日</div>
-        </li>            
-        <li class="room_door">
-          <div class="top_icon"></div><!-- TODOトプ画 -->
-          <div class="friend_window">
-            <div class="friend_name">友達のなまえ</div>
-            <div>トークの冒頭と三点リーダー...</div>
-          </div>
-          <div class="last_get_message_date">金曜日</div>
-        </li>
+        </template>
       </ul>
     </div>
-    <Room />
+    <Room :room="room" :room-member="roomMember" />
   </div>
 </template>
 
 <script>
+import axios from "axios"
 import Room from '@/components/Room.vue'
 export default {
   name: 'Talk',
@@ -65,15 +28,46 @@ export default {
   },
   data(){
     return{
-
+      roomInfos: {},
+      room: {},
+      roomMember: {},
     }
   },
   methods: {
-
+    // 自分が参加しているルームの情報取得
+    getRoomDatas() {
+      axios.get("/api/get_rooms?user_id="+this.$store.state.user.id)
+      .then((response) => {
+        console.log(response)
+        this.roomInfos = response.data
+      })    
+      .catch((errors) => {    
+        console.log(errors)
+      })
+    },
+    // クリックしたルームを表示する
+    goRoom(index) {
+      // ルームに紐づいている、お誘い情報をルームコンポーネントに渡す
+      this.room = this.roomInfos[index];
+      
+      let room_id = this.roomInfos[index]['room_id'];
+      // ルームに参加しているメンバー取得
+      axios.get("/api/get_room_member?user_id="+this.$store.state.user.id+'&room_id='+room_id)
+      .then((response) => {
+        console.log(response)
+        this.roomMember = response.data
+      })    
+      .catch((errors) => {    
+        console.log(errors)
+      })
+    },
+  },
+  created() {
+    this.getRoomDatas()
   },
   mounted() {
-
   }
+
 }
 </script>
 <style lang="scss">
