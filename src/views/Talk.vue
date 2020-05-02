@@ -1,36 +1,41 @@
 <template>
-  <div id="component_wrap">
-    <div class="talk_wrap">
-      <ul class="talk_list">
-        <template v-for="(roomInfo, index) in roomInfos">
-        <li class="room_door" :key="index" v-on:click="goRoom(index); activeroom" :class="[ activeroom === index ? 'active' : '' ]"> 
-          <div class="hold_time">
-            <span class="hold_year">{{ roomInfo.date | hold_year }}</span>
-            <span class="hold_date">{{ roomInfo.date | hold_date }}</span>
-          </div>
-          <div class="friend_window">
-            <div class="friend_name">{{ roomInfo.title }}</div>
-            <div class="last_get_message_message" v-if="roomInfo.room_id===currentMessage.room_id">{{ currentMessage.message }}</div>
-          </div>
-          <div class="last_get_message_date" v-if="roomInfo.room_id===currentMessage.room_id">{{ currentMessage.send_time }}</div>
-          <div class="last_get_message_date" v-else></div>
-        </li>
-        </template>
-      </ul>
+  <div class="content">
+    <Nav />
+    <div id="component_wrap">
+      <div class="talk_wrap">
+        <ul class="talk_list">
+          <template v-for="(roomInfo, index) in roomInfos">
+          <li class="room_door" :key="index" v-on:click="goRoom(index); activeroom" :class="[ activeroom === index ? 'active' : '' ]"> 
+            <div class="hold_time">
+              <span class="hold_year">{{ roomInfo.date | hold_year }}</span>
+              <span class="hold_date">{{ roomInfo.date | hold_date }}</span>
+            </div>
+            <div class="friend_window">
+              <div class="friend_name">{{ roomInfo.title }}</div>
+              <div class="last_get_message_message" v-if="roomInfo.room_id===currentMessage.room_id">{{ currentMessage.body }}</div>
+            </div>
+            <div class="last_get_message_date" v-if="roomInfo.room_id===currentMessage.room_id">{{ currentMessage.send_time }}</div>
+            <div class="last_get_message_date" v-else></div>
+          </li>
+          </template>
+        </ul>
+      </div>
+      <Room :room="room" :room-member="roomMember" />
     </div>
-    <Room :room="room" :room-member="roomMember" />
   </div>
 </template>
 
 <script>
 import axios from "axios"
 import Room from '@/components/Room.vue'
+import Nav from '@/components/Nav.vue'
 import io from 'socket.io-client';
 import moment from "moment";
 export default {
   name: 'Talk',
   components: {
-    Room
+    Room,
+    Nav
   },
   data(){
     return{
@@ -123,79 +128,82 @@ export default {
 li {
   margin: 0;
 }
-#component_wrap {
+.content {
   width: 100%;
   height: 100%;
-  display: flex;
-  border: solid 1px #757575;
-  color: #424242;
-  background-color: #F6F7FB;
-  .talk_wrap {
-    width: 30%;
-    height: 100%;
-    min-width: 350px;
-    border-right: solid 1px #eceff1;
-    background-color: #FFF;
-    .talk_list {
+  #component_wrap {
+    width: 100%;
+    height: calc(100% - 60px);
     display: flex;
-    align-items: start;
-    flex-direction: column;
-    margin: 0;
-    .room_door {
-      width: 100%;
-      height: 90px;
-      padding: 20px 20px 10px;
-      box-sizing: border-box;
-      display: flex;
-      justify-content: space-between;
-      font-weight: 200;
-      cursor: pointer;
-      .hold_time {
-        border-radius: 70px;
-        border: solid 1px #fff;
-        padding: 5px;
-        height: 40px;
-        width: auto;
-        .hold_year {
-          display: block;
+    color: #424242;
+    background-color: #F6F7FB;
+    .talk_wrap {
+      width: 30%;
+      height: 100%;
+      min-width: 350px;
+      border-right: solid 1px #eceff1;
+      background-color: #FFF;
+      .talk_list {
+        display: flex;
+        align-items: start;
+        flex-direction: column;
+        margin: 0;
+        .room_door {
+          width: 100%;
+          height: 90px;
+          padding: 20px 20px 10px;
+          box-sizing: border-box;
+          display: flex;
+          justify-content: space-between;
+          font-weight: 200;
+          cursor: pointer;
+          .hold_time {
+            border-radius: 70px;
+            border: solid 1px #fff;
+            padding: 5px;
+            height: 40px;
+            width: auto;
+            .hold_year {
+              display: block;
+            }
+          }
+          .friend_window {
+            text-align: left;
+            flex-grow: 1;
+            padding: 5px 0 5px 20px;
+            .friend_name {
+              font-size: 14px;
+              padding-bottom: 3px;
+            }
+            .last_get_message_message {
+              overflow: hidden;
+              max-width: 270px;
+              max-height: 35px;
+              font-size: 11px;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+              text-overflow: ellipsis;
+            }
+          }
+          .last_get_message_date {
+            width: 60px;
+            text-align: left;
+            padding-left: 5px;
+          }
+        }
+        .active {
+          background-color: #42b983;
+          color: #fff;
+        }
+        .room_door:hover {
+          background-color: #42b983;
+          color: #fff;
+          opacity: 0.75;
         }
       }
-      .friend_window {
-        text-align: left;
-        flex-grow: 1;
-        padding: 5px 0 5px 20px;
-        .friend_name {
-          font-size: 14px;
-          padding-bottom: 3px;
-        }
-        .last_get_message_message {
-          overflow: hidden;
-          max-width: 270px;
-          max-height: 35px;
-          font-size: 11px;
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 2;
-          text-overflow: ellipsis;
-        }
-      }
-      .last_get_message_date {
-        width: 60px;
-        text-align: left;
-        padding-left: 5px;
-      }
-    }
-    .active {
-      background-color: #42b983;
-      color: #fff;
-    }
-    .room_door:hover {
-      background-color: #42b983;
-      color: #fff;
-      opacity: 0.75;
     }
   }
-}
 }
 </style>
 // '#42b983'

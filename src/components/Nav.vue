@@ -16,7 +16,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 #nav {
-  // padding: 30px;
+  height: 60px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: solid 1px #757575;
 
   a {
     font-weight: bold;

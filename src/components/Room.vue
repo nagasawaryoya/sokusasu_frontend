@@ -4,7 +4,7 @@
       <!-- MyMessage start -->
       <template v-for="(message, index) in messages">
         <template v-if="message.name == name">
-          <div class="myMsg_block"  :key="index">
+          <div class="myMsg_block" :key="index">
             <div class="myMsg">
               {{ message.body }}
               <span class="send_hour" v-if="message.sended_time">{{ message.sended_time | send_hour }}</span>
@@ -44,7 +44,6 @@ import moment from "moment";
 export default {
   name: 'Room',
   components: {
-
   },
   props: {
     room: Object,
@@ -157,7 +156,7 @@ export default {
   height: 95%;
   background-color: #FFF;
   box-sizing: border-box;
-  background-color: #f1f3fb;
+  background-color: #F6F7FB;
   margin: 0 auto;
   padding-top: 30px;
   .room_block {
@@ -174,11 +173,9 @@ export default {
       width: 50%;
       height: 90%;
     }
-
     .myMsgArea {
       float: right;
     }
-
     .friendsMsgArea {
       float: left;
     }

@@ -1,5 +1,6 @@
 <template>
   <div id="newInvite" class="box">
+    <Nav />
     <div class="content_wrap">
       <div class="content_head">
         <h3 class="title"><span class="title_bar"></span>新規お誘い作成</h3>
@@ -79,10 +80,12 @@
 </template>
 
 <script>
-// import router from "../router"    
+// import router from "../router"
+import Nav from '@/components/Nav.vue'
 export default {
   name: 'NewInvite',
   components: {
+    Nav
   },
   data () {
     return {

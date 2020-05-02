@@ -1,6 +1,6 @@
 <template>
     <div>    
-      <!-- <p>OName: {{ user.name }}</p>  -->
+      <Nav />
       <Invite :invite-details="inviteDetails" />
     </div>
 </template>
@@ -8,11 +8,13 @@
     import axios from "axios"
     import router from "../router"
     import Invite from '@/components/Invite.vue'
+    import Nav from '@/components/Nav.vue'
     import store from '../store'
     export default {    
       name: "Dashboard",    
       components: {
-        Invite
+        Invite,
+        Nav
       },
       data() {    
         return {    
@@ -34,14 +36,15 @@
             this.getInviteList(user_id)
 
             // ユーザーの状態を保持
-            store.commit('getUserId', this.user)
+            // this.getUserData()
+            // store.commit('getUserId', this.user)
           },
           deep: true
         }
       },
       methods: {
         // ログインしたユーザーの情報を取得
-        getUserData() {  
+        getUserData() {
           axios.get("/api/user")
           .then((response) => {
             console.log(response)
@@ -53,7 +56,7 @@
               this.user.mail = response.data.user.mail
               this.user.password = response.data.user.password
               this.user.provider = response.data.user.provider
-              this.getUserId()
+              // this.getUserId()
             } else {
               router.push("/")   
             }
