@@ -64,6 +64,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+/* div#nav {
+  display: none;
+} */
 .signup {
   margin-top: 20px;
   display: flex;

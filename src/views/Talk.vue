@@ -3,7 +3,7 @@
     <div class="talk_wrap">
       <ul class="talk_list">
         <template v-for="(roomInfo, index) in roomInfos">
-        <li class="room_door" :key="index" v-on:click="goRoom(index)">
+        <li class="room_door" :key="index" v-on:click="goRoom(index); activeroom" :class="[ activeroom === index ? 'active' : '' ]"> 
           <div class="hold_time">
             <span class="hold_year">{{ roomInfo.date | hold_year }}</span>
             <span class="hold_date">{{ roomInfo.date | hold_date }}</span>
@@ -39,6 +39,7 @@ export default {
       room: {},
       roomMember: {},
       currentMessage: [],
+      activeroom: '',
     }
   },
   filters: {
@@ -63,6 +64,7 @@ export default {
     },
     // クリックしたルームを表示する
     goRoom(index) {
+      this.activeroom = index
       // ルームに紐づいている、お誘い情報をルームコンポーネントに渡す
       this.room = this.roomInfos[index];
       let room_id = this.roomInfos[index]['room_id'];
@@ -183,13 +185,17 @@ li {
         padding-left: 5px;
       }
     }
-    .room_door:hover {
-      // background-color: #42b983;
-      background-color: #4ab383;
+    .active {
+      background-color: #42b983;
       color: #fff;
-      opacity: 0.9;
+    }
+    .room_door:hover {
+      background-color: #42b983;
+      color: #fff;
+      opacity: 0.75;
     }
   }
 }
 }
 </style>
+// '#42b983'

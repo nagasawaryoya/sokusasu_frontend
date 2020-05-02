@@ -44,6 +44,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
+// div#nav {
+//   display: none;
+// }
 .signin_wrap {
   margin-top: 20px;
   display: flex;
