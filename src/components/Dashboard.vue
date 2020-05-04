@@ -37,7 +37,7 @@
 
             // ユーザーの状態を保持
             // this.getUserData()
-            // store.commit('getUserId', this.user)
+            store.commit('getUserId', this.user)
           },
           deep: true
         }
@@ -56,7 +56,7 @@
               this.user.mail = response.data.user.mail
               this.user.password = response.data.user.password
               this.user.provider = response.data.user.provider
-              // this.getUserId()
+              this.getUserId()
             } else {
               router.push("/")   
             }

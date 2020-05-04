@@ -87,6 +87,7 @@ input {
     font-weight: 400;
     padding: 0;
     cursor: pointer;
+    margin: 0 14px 0 0;
   }
   .ok-button:hover {
     border-color: #42b983;

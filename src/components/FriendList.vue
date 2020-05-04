@@ -1,12 +1,12 @@
 <template>
-  <p>リダイレクト中...</p>
+  <p>friendList</p>
 </template>
 <script>  
     import router from "../router"
     export default {    
-      name: "Dummy",      
+      name: "FriendList",
       mounted() {
-        router.push("/dashboard")
+        router.push("/friend-list")
       }
     }
 </script>

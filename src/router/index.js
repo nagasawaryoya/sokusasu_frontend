@@ -6,6 +6,9 @@ import Signin from '@/components/Signin'
 import Dashboard from '@/components/Dashboard'
 import NewInvite from '@/components/NewInvite'
 import Dummy from '@/components/Dummy'
+import QRcode from '@/components/QRcode'
+import QRcodeRead from '@/components/QRcodeRead'
+import FriendList from '@/components/FriendList'
 
 Vue.use(VueRouter)
 
@@ -44,6 +47,21 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/qrcode',
+    name: 'QRcode',
+    component: QRcode
+  },
+  {
+    path: '/qrcode-read',
+    name: 'QRcodeRead',
+    component: QRcodeRead
+  },
+  {
+    path: '/friend-list',
+    name: 'FriendList',
+    component: FriendList
   },
   {
     path: '/talk',
