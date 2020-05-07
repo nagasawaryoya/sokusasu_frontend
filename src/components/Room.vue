@@ -73,6 +73,8 @@ export default {
         });
         // 過去のも含むメッセージの取得
         this.getMessage()
+        // クリックしたルームのlocateを引数で渡して、緯度経度を求める
+        this.getStation(val.locate)
       },
       deep: true
     }
@@ -134,6 +136,35 @@ export default {
       .catch((errors) => {
         console.log(errors)
         alert('ごめんなさい...メッセージの表示に失敗しちゃいました')
+      })
+    },
+    // 駅の緯度経度を取得
+    getStation(locate) {
+      axios.get('http://express.heartrails.com/api/json?method=getStations&name='+locate)
+      .then((response) => {
+        // 駅情報
+        const station_data = response.data.response.station[0]
+        // 緯度
+        let x = station_data.x
+        // 経度
+        let y = station_data.y
+        // お店取得するためにサーバーに渡す
+        this.getShop(x, y)
+        // console.log(station_data.x)
+        // console.log(station_data.y)
+      })    
+      .catch((errors) => {    
+        console.log(errors)    
+      }) 
+    },
+    getShop(x, y) {
+      axios.get('/api/get_shop?x='+x+'&y='+y)
+      .then((response) => {
+        console.log(response)
+      })    
+      .catch((errors) => {
+        console.log(errors)
+        alert('ごめんなさい...')
       })
     }
   },

@@ -22,6 +22,7 @@ body {
   font-family: "Hiragino Sans"; 
   font-weight: 100;
   color: #757575;
+  background-color: #F6F7FB;
 }
 h1, h2 {
   font-weight: normal;
@@ -109,6 +110,7 @@ input {
       background-color: #fff;
       box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
       border-radius: 8px;
+      box-sizing: border-box;
       .content_block {
         display: block;
         font-size: 14px;

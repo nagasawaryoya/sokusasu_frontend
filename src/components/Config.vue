@@ -4,6 +4,7 @@
         <li><a href="#/qrcode">QRコード作成</a></li>
         <li><a href="#/qrcode-read">友達追加</a></li>
         <li><a href="#/friend-list">友達一覧</a></li>
+        <li><a href="#/friend-candidate">友達かも</a></li>
       </ul>
   </div>
 </template>

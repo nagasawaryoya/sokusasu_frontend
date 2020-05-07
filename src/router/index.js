@@ -9,6 +9,8 @@ import Dummy from '@/components/Dummy'
 import QRcode from '@/components/QRcode'
 import QRcodeRead from '@/components/QRcodeRead'
 import FriendList from '@/components/FriendList'
+import FriendCandidate from '@/components/FriendCandidate'
+
 
 Vue.use(VueRouter)
 
@@ -63,6 +65,11 @@ const routes = [
     name: 'FriendList',
     component: FriendList
   },
+  {
+    path: '/friend-candidate',
+    name: 'FriendCandidate',
+    component: FriendCandidate
+  },  
   {
     path: '/talk',
     name: 'Talk',
